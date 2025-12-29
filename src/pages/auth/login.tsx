@@ -23,6 +23,7 @@ const LoginPage = () => {
       }else{
         setError(res.message || 'Login failed. Please try again.');
       }
+      setLoading(false);
     } catch (err: unknown) {
       setError('Login failed. Please try again.');
       console.error(err);
