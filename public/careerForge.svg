@@ -1,0 +1,16 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Anvil Base -->
+  <path d="M20 60H100C96 70 85 72 70 72H50C35 72 24 70 20 60Z" fill="#1E293B"></path>
+
+  <!-- Anvil Body -->
+  <path d="M35 72H85V92C85 96 82 100 60 100C38 100 35 96 35 92V72Z" fill="#334155"></path>
+
+  <!-- Top Plate -->
+  <rect x="25" y="52" width="70" height="10" rx="3" fill="#475569"></rect>
+
+  <!-- Flame -->
+  <path d="M60 28C55 34 62 36 58 42C54 48 62 52 60 56C70 50 74 40 60 28Z" fill="#F97316"></path>
+
+  <!-- Growth Arrow -->
+  <path d="M42 48L70 30V38L90 38L70 22L42 40V48Z" fill="#3B82F6"></path>
+</svg>
