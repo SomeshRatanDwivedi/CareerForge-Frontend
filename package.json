@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "local": "dotenv -e ./env/.env.local vite",
+    "local-dev": "dotenv -e ./env/.env.development vite --host 0.0.0.0",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -24,6 +26,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv-cli": "^11.0.0",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
