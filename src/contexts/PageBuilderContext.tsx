@@ -82,7 +82,7 @@ export function PageBuilderProvider({ children }: { children: ReactNode }) {
   const updateLoading = useCallback((loading: boolean) => {
     setState((prev) => ({ ...prev, loading }));
   }, []);
-  const getAndSetJobsFilters = useCallback(async (slug = null) => {
+  const getAndSetJobsFilters = useCallback(async (slug?:string|null) => {
     try {
       const stored = localStorage.getItem('jobFilters');
       const filterValues = stored ? JSON.parse(stored) : {};
