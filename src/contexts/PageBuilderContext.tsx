@@ -22,7 +22,7 @@ export interface PageBuilderContextType {
   reorderSections: (sections: ContentSection[]) => void;
   isPreviewMode: boolean;
   setIsPreviewMode: (value: boolean) => void;
-  getAndSetJobsFilters: () => Promise<void>;
+  getAndSetJobsFilters: (slug?: string | null) => Promise<void>;
   jobsFilters: FiltersDataType;
 }
 
@@ -82,9 +82,15 @@ export function PageBuilderProvider({ children }: { children: ReactNode }) {
   const updateLoading = useCallback((loading: boolean) => {
     setState((prev) => ({ ...prev, loading }));
   }, []);
-  const getAndSetJobsFilters = async () => {
+  const getAndSetJobsFilters = useCallback(async (slug = null) => {
     try {
-      const res = await getJobFilters(state.slug);
+      const stored = localStorage.getItem('jobFilters');
+      const filterValues = stored ? JSON.parse(stored) : {};
+      if (Object.keys(filterValues).length > 0) {
+        setJobsFilters(filterValues);
+        return;
+      }
+      const res = await getJobFilters(slug ?? state.slug);
       if (res.success && res.data) {
         const filteredData: FiltersDataType = {};
         for (const key of JOB_FILTER_TYPES) {
@@ -98,7 +104,7 @@ export function PageBuilderProvider({ children }: { children: ReactNode }) {
     } catch (error) {
       console.error("Error fetching job filters:", error);
     }
-  }
+  }, [state.slug])
 
   return (
     <PageBuilderContext.Provider

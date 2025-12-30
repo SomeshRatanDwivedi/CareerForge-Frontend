@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
 
 const CareerPageLayout = () => {
-  const {state, setState, updateLoading } = usePageBuilder();
+  const {state, setState, updateLoading,getAndSetJobsFilters } = usePageBuilder();
   const { slug } = useParams();
   useEffect(() => {
     if (!slug) return;
@@ -16,6 +16,7 @@ const CareerPageLayout = () => {
         const data = await getCompanySettings(slug as string);
         if (data.success && data.data) {
           setState(data.data);
+          getAndSetJobsFilters(data.data.slug);
         }
         updateLoading(false);
 
