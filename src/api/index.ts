@@ -4,6 +4,9 @@ import type { FiltersDataType, PageBuilderState } from "@/types";
 export const getCompanySettings = async (companySlug: string) => {
   const res = await fetch(`${CARRIER_FORGE_BASE_URL}/companies/get-all-data/${companySlug}`);
   const data = await res.json();
+  if (!res.ok && res.status==404) {
+     window.location.replace("/auth/login")
+  }
   return data
 };
 
@@ -22,7 +25,7 @@ export const publishCompanyData = async (
   return data;
 };
 
-export const companyLogin= async (companyName:string) => {
+export const companyLogin = async (companyName: string) => {
   const payload = { companyName };
   const res = await fetch(`${CARRIER_FORGE_BASE_URL}/companies/login`, {
     method: "POST",
@@ -48,7 +51,7 @@ export const getJobsByFilterAndQuery = async (companySlug: string, filterValues:
   return data;
 }
 
-export const getJobFilters=async (companySlug: string) => {
+export const getJobFilters = async (companySlug: string) => {
   const res = await fetch(`${CARRIER_FORGE_BASE_URL}/jobs/filter-values/${companySlug}`);
   const data = await res.json();
   return data;
